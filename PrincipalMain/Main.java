@@ -1,11 +1,15 @@
 import java.util.Scanner;
 
+import Clases.clsEncargado;
 import Clases.clsMenus;
 
 public class Main {
     public static void main(String[] args) {    
         Scanner lector = new Scanner(System.in);
-
+        clsEncargado encagado1=new clsEncargado("EncargadoPEPE","913782pp");
+        String usuario;
+        String contraseña;
+        int intentos=1;
         int opcion;
         
         do{
@@ -16,6 +20,7 @@ public class Main {
                 if (opcion<1||opcion>3) {
                     System.out.println("Opción incorrecta");
                 }
+                lector.nextLine();
             }while(opcion<1||opcion>3);    
              switch (opcion) {
                 case 1:
@@ -97,6 +102,24 @@ public class Main {
                 }while (opcion!=6);
                     break;
                 case 2:
+                    do{
+                        System.out.println("""
+                            --------------------------
+                                  INICIAR SESIÓN
+                            -------------------------- """);
+                        System.out.print("USUARIO: ");
+                        usuario=lector.nextLine();
+                        System.out.print("CONTRASEÑA: ");
+                        contraseña=lector.nextLine();
+                        System.out.println("--------------------------");
+                        intentos++;
+                        if (intentos==5) {
+                            break;
+                        }
+                    }while (encagado1.verificarUsuario(usuario)&&encagado1.verificarContraseña(contraseña));
+                    if (intentos==5) {
+                        break;
+                    }
                     do{
                         clsMenus.MenuEncargado();
                         do{
