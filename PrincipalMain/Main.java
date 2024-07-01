@@ -1,177 +1,114 @@
 import java.util.Scanner;
-// import java.lang.Exception;
+
+import Clases.clsCliente;
 import Clases.clsEncargado;
 import Clases.clsMenus;
+import Clases.clsValidadores;
 
 public class Main {
-    public static void main(String[] args) {    
+    public static void ejecutar() {    
         Scanner lector = new Scanner(System.in);
-        clsEncargado encagado1=new clsEncargado("EncargadoPEPE","913782pp");
-        String usuario;
-        String contraseña;
-        int intentos=1;
-        int opcion;
+        clsEncargado encargado1=new clsEncargado("EncargadoPEPE","913782pp");
+        clsCliente cliente1=new clsCliente();
+        int correct_option=0;
         
-        do{
+        do {
             clsMenus.Menutipo();
-            do{
-                System.out.print("Ingrese la opción: ");
-                opcion=lector.nextInt();
-                if (opcion<1||opcion>3) {
-                    System.out.println("Opción incorrecta");
-                }
-                lector.nextLine();
-            }while(opcion<1||opcion>3);    
-             switch (opcion) {
+            correct_option = clsValidadores.validar_opciones(1, 3);
+            switch (correct_option) {
                 case 1:
-                    do{
-                        clsMenus.MenuCliente();    
-                        do{
-                            System.out.print("Ingrese la opción: ");
-                            opcion=lector.nextInt();
-                            if (opcion<1|| opcion>6) {
-                                System.out.println("Opción incorrecta");
-                            }
-                        }while (opcion<1||opcion>6);
-                    switch (opcion) {
-                        case 1:
-                            do{
-                                clsMenus.SubMenuVuelos();
-                                do{
-                                    System.out.print("Ingrese la opción: ");
-                                    opcion=lector.nextInt();
-                                    if (opcion<1||opcion>4) {
-                                        System.out.println("Opción incorrecta");
-                                    }
-                                }while (opcion<1||opcion>4);
-                            }while (opcion!=4);
-                            break;
-                    
-                        case 2:
-                            do{
-                                clsMenus.SubMenuReserva();
-                                do{
-                                    System.out.print("Ingrese la opción: ");
-                                    opcion=lector.nextInt();
-                                    if (opcion<1||opcion>5) {
-                                        System.out.println("Opción incorrecta");
-                                    }
-                                }while (opcion<1||opcion>5);
-                            }while (opcion!=5);
-                            break;
-                        
-                        case 3:
-                            do{
-                                clsMenus.SubMenuEstadoReserva();
-                                do{
-                                    System.out.print("Ingrese la opción: ");
-                                    opcion=lector.nextInt();
-                                    if (opcion<1||opcion>3) {
-                                        System.out.println("Opción incorrecta");
-                                    }
-                                }while (opcion<1||opcion>3);
-                            }while (opcion!=3);
-                            break;
-
-                        case 4:
-                            do{
-                                clsMenus.SubMenuCancelar();
-                                do{
-                                    System.out.print("Ingrese la opción: ");
-                                    opcion=lector.nextInt();
-                                    if (opcion<1||opcion>3) {
-                                        System.out.println("Opción incorrecta");
-                                    }
-                                }while (opcion<1||opcion>3);
-                            }while (opcion!=3);
-                            break;
-                    
-                        case 5:
-                            do{
-                                clsMenus.SubMenuActuDatos();
-                                do{
-                                    System.out.print("Ingrese la opción: ");
-                                    opcion=lector.nextInt();
-                                    if (opcion<1||opcion>3) {
-                                        System.out.println("Opción incorrecta");
-                                    }
-                                }while (opcion<1||opcion>3);
-                            }while (opcion!=3);  
-                            break;
-                    }
-                }while (opcion!=6);
-                    break;
-                case 2:
-                    do{
-                        System.out.println("""
-                            --------------------------
-                                  INICIAR SESIÓN
-                            -------------------------- """);
-                        System.out.print("USUARIO: ");
-                        usuario=lector.nextLine();
-                        System.out.print("CONTRASEÑA: ");
-                        contraseña=lector.nextLine();
-                        System.out.println("--------------------------");
-                        intentos++;
-                        if (intentos==5) {
-                            break;
-                        }
-                    }while (encagado1.verificarUsuario(usuario)&&encagado1.verificarContraseña(contraseña));
-                    if (intentos==5) {
-                        break;
-                    }
-                    do{
-                        clsMenus.MenuEncargado();
-                        do{
-                            System.out.print("Ingrese la opción: ");
-                            opcion=lector.nextInt();
-                            if (opcion<1||opcion>4) {
-                                System.out.println("Opción incorrecta");
-                            }
-                        }while (opcion<1||opcion>4);
-                        switch (opcion) {
+                    int clienteOption;
+                    do {
+                        clsMenus.MenuCliente();
+                        clienteOption = clsValidadores.validar_opciones(1, 6);
+                        switch (clienteOption) {
                             case 1:
-                                do{
-                                    clsMenus.MenuGesVuelos();
-                                    do{
-                                        System.out.print("Ingrese la opción: ");
-                                        opcion=lector.nextInt();
-                                        if (opcion<1||opcion>5) {
-                                            System.out.println("Opción incorrecta");
-                                        }
-                                    }while (opcion<1||opcion>5);
-                                }while (opcion!=5);
+                                int subMenuVuelosOption;
+                                do {
+                                    clsMenus.SubMenuVuelos();
+                                    subMenuVuelosOption = clsValidadores.validar_opciones(1, 4);
+                                } while (subMenuVuelosOption != 4);
                                 break;
-                            
                             case 2:
-                                do{
-                                    clsMenus.MenuGesBoletos();
-                                    do{
-                                        System.out.print("Ingrese la opción: ");
-                                        opcion=lector.nextInt();
-                                        if (opcion<1||opcion>4) {
-                                            System.out.println("Opción incorrecta");
-                                        }
-                                    }while (opcion<1||opcion>4);
-                                }while (opcion!=4);
+                                int subMenuReservaOption;
+                                do {
+                                    clsMenus.SubMenuReserva();
+                                    subMenuReservaOption = clsValidadores.validar_opciones(1, 5);
+                                    switch (subMenuReservaOption) {
+                                        case 1:
+                                            cliente1.registrar();
+                                            break;
+                                        case 2:
+                                            
+                                            break;
+                                        case 3:
+                                            
+                                            break;
+                                        case 4:
+                                            
+                                            break;
+                                        case 5:
+                                            break;
+                                    }
+                                } while (subMenuReservaOption != 5);
                                 break;
                             case 3:
-                                do{
-                                    clsMenus.MenuGesPasajeros();
-                                    do{
-                                        System.out.print("Ingrese la opción: ");
-                                        opcion=lector.nextInt();
-                                        if (opcion<1||opcion>3) {
-                                            System.out.println("Opción incorrecta");
-                                        }
-                                    }while (opcion<1||opcion>3);
-                                }while (opcion!=3);
+                                int subMenuEstadoReservaOption;
+                                do {
+                                    clsMenus.SubMenuEstadoReserva();
+                                    subMenuEstadoReservaOption = clsValidadores.validar_opciones(1, 3);
+                                } while (subMenuEstadoReservaOption != 3);
+                                break;
+                            case 4:
+                                int subMenuCancelarOption;
+                                do {
+                                    clsMenus.SubMenuCancelar();
+                                    subMenuCancelarOption = clsValidadores.validar_opciones(1, 3);
+                                } while (subMenuCancelarOption != 3);
+                                break;
+                            case 5:
+                                int subMenuActuDatosOption;
+                                do {
+                                    clsMenus.SubMenuActuDatos();
+                                    subMenuActuDatosOption = clsValidadores.validar_opciones(1, 3);
+                                } while (subMenuActuDatosOption != 3);
                                 break;
                         }
-                    }while (opcion!=4);
+                    } while (clienteOption != 6);
                     break;
-                }
-        }while(opcion!=3);
+                case 2:
+                    encargado1.IniciarSesion();
+                    int encargadoOption;
+                    do {
+                        clsMenus.MenuEncargado();
+                        encargadoOption = clsValidadores.validar_opciones(1, 4);
+                        switch (encargadoOption) {
+                            case 1:
+                                int menuGesVuelosOption;
+                                do {
+                                    clsMenus.MenuGesVuelos();
+                                    menuGesVuelosOption = clsValidadores.validar_opciones(1, 5);
+                                } while (menuGesVuelosOption != 5);
+                                break;
+                            case 2:
+                                int menuGesBoletosOption;
+                                do {
+                                    clsMenus.MenuGesBoletos();
+                                    menuGesBoletosOption = clsValidadores.validar_opciones(1, 4);
+                                } while (menuGesBoletosOption != 4);
+                                break;
+                            case 3:
+                                int menuGesPasajerosOption;
+                                do {
+                                    clsMenus.MenuGesPasajeros();
+                                    menuGesPasajerosOption = clsValidadores.validar_opciones(1, 3);
+                                } while (menuGesPasajerosOption != 3);
+                                break;
+                        }
+                    } while (encargadoOption != 4);
+                    break;
+            }
+        } while (correct_option != 3);
         lector.close();
     }
 }

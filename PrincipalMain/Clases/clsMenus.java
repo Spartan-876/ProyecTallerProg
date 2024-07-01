@@ -51,8 +51,8 @@ public class clsMenus {
             ---------------------------
                   RESERVAR BOLETO       
             ---------------------------
-              1. SELECCIONAR VUELO
-              2. DATOS DEL PASAJERO
+              1. DATOS DEL PASAJERO
+              2. SELECCIONAR VUELO
               3. SELECCIONAR ASIENTO
               4. REALIZAR PAGO
               5. VOLVER

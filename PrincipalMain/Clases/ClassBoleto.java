@@ -1,6 +1,6 @@
 package Clases;
 
-public class ClassBoleto {
+public class classBoleto {
     //Atributos
     public String codigoBoleto;
     public String [][]asiento;
@@ -9,7 +9,7 @@ public class ClassBoleto {
 
     //Metodos
     public void emitir(){
-
+        
     }
     public void cancelar(){
 
